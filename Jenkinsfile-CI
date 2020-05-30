@@ -1,10 +1,21 @@
 pipeline{
     agent any
     stages{
-        stage('Step 1 : Git Checkout') {
-            steps{
-                git 'https://github.com/dileepfsd/user.git'
+        stage('Cleaning Stage') {
+            steps {
+               bat 'mvn clean'
             }
-        }    
-    }
+        }
+        stage('Testing stage') {
+            steps {
+                 bat 'mvn test'
+            }
+        }
+        stage('Package stage') {
+            steps {
+                bat 'mvn package'
+            }
+        }
+     }
+
 }
